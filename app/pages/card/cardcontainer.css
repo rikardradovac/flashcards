@@ -1,0 +1,17 @@
+.card-view {
+    background-color: aliceblue;
+}
+
+.add-button {
+
+	background-color: orange;
+  	padding: 2px;
+  	border: none;
+  	opacity: 0.6;
+  
+}
+
+.add-button:hover{
+  background-color: cyan;
+  opacity: 1;
+}

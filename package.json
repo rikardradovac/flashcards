@@ -24,6 +24,7 @@
     "electron": "^19.0.8",
     "electron-builder": "^23.1.0",
     "electron-data-holder": "^1.0.1",
+    "fraction-unicode": "^1.0.1",
     "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",

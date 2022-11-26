@@ -1,0 +1,36 @@
+main {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.list-container {
+    background-color: beige;
+    width: 1500px;
+    height: 800px;
+    
+}
+
+.list-element {
+    position: relative;
+    margin-left: 2%;
+    margin-right: 2%;   
+    margin-bottom: 2%;
+    background-color:bisque;
+    vertical-align: middle;
+    border-radius: 10px;
+    min-height: 50px;
+    overflow: hidden;
+    height: fit-content;
+    border-style: solid;
+   
+
+
+
+}
+
+.expanded-view {
+    margin-top: 2%;
+    position: relative;
+    background-color: aliceblue;
+    height: 50px;
+}

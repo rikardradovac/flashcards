@@ -1,0 +1,22 @@
+.category-content {
+    position: relative;
+    text-align: center;
+    
+    
+
+}
+
+.categories-list {
+    list-style-type: none;
+}
+
+
+.category-popup {
+    background-color: white;
+
+    position:static;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 75%;
+}

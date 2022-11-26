@@ -1,5 +1,19 @@
-.card-view {
-    background-color: aliceblue;
+.cardview-container {
+	position: relative;
+    background-color: beige;
+	outline: none;
+	margin-inline: 0px;
+	min-width: 700px;
+	width: 100vw;
+	min-height: 800px;
+	max-width: fit-content;
+	height: 100vh;
+	z-index: 0;
+	left: 0px;
+	top: 0px;
+	transition: all 0.3s;
+	
+	
 }
 
 .add-button {
@@ -14,4 +28,10 @@
 .add-button:hover{
   background-color: cyan;
   opacity: 1;
+}
+
+
+.category-button {
+	position: absolute;
+	left: 70%;
 }

@@ -2,7 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import loadable from "@loadable/component";
 import Sidebar from "../../components/sidebar";
-import List from "../../components/list";
+import List from "../list/list"
+import "./routes.css"
 
 const MainPage = loadable(() => import("../main/main"));
 const CardContainer = loadable(() => import("../card/cardcontainer"));

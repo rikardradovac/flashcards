@@ -7,5 +7,5 @@ contextBridge.exposeInMainWorld('windowAPI', {
 })
 
 // renderer.js
-console.log(window.windowAPI)
+
 // => { desktop: true }

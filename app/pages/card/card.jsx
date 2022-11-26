@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import "./card.css";
 
 
 
-const flashCards = JSON.parse(localStorage.getItem("flashcards"));
+// const flashCards = JSON.parse(localStorage.getItem("flashcards"));
+
+// console.log("card.jsx", flashCards)
 
 
-const Card = ({card}) => {
-    const [flipped, setSide] = useState(false);
+const Card = (props) => {
 
-    const flipCard = (event) => {
-        setSide(!flipped)
-    }
     return (
-        <div className="card-container" onClick={(event) => flipCard(event)}>
-            <h1>{flipped ? card.secondPage : card.firstPage}</h1>
+        <div className="card-container" onClick={props.onClick}>
+            <div className="card-content">
+                <h1>{props.setFlipped ? props.card.secondPage : props.card.firstPage}</h1>
+                <h1 className="count">{props.count}</h1>
+            </div>
+
         </div>
     )
 }

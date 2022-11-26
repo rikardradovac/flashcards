@@ -2,20 +2,27 @@
     margin:0;
     padding:0;
     text-decoration: none;
+
 }
 .container{
     display:flex;
+    position: absolute;
+
 }
 main{
     width: 100%;
-    padding: 20px;
+    padding: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
 }
 .sidebar{
     background: #000;
     color: #fff;
-    height: 100vh;
+    height: 700px;
     width: 200px;
-    transition: all 0.3s;
+    min-height: 800px;
+    transition: all 0.5s;
 }
 .top_section{
     display: flex;

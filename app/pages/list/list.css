@@ -1,36 +1,49 @@
-main {
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
+
 
 .list-container {
-    background-color: beige;
-    width: 1500px;
+    background-color: #1E2019;
+    width: 99vw;
     height: 800px;
+    color: white;
+    overflow-y:scroll
     
 }
+
+
+
 
 .list-element {
     position: relative;
     margin-left: 2%;
-    margin-right: 2%;   
-    margin-bottom: 2%;
-    background-color:bisque;
+    margin-right: 2%; 
+    margin-bottom: 1%;  
+    top: 2%;
+    background-color: #8DAB7F;
     vertical-align: middle;
-    border-radius: 10px;
+    border-radius: 5px;
+    border-width: 3px;
     min-height: 50px;
     overflow: hidden;
     height: fit-content;
     border-style: solid;
-   
-
-
+    border-color: #394032;
+    color: #394032;
+    user-select: none;
 
 }
+
+.list-element:hover {
+    background-color: #CFEE9E;
+}
+
+.list-element:hover > .expanded-view  {
+    background-color: #CFEE9E;
+}
+
 
 .expanded-view {
     margin-top: 2%;
     position: relative;
-    background-color: aliceblue;
+    background-color: #8DAB7F;;
     height: 50px;
 }

@@ -104,8 +104,6 @@ const CardContainer = () => {
                 </button>
                 <Categories trigger={openCategory} setTrigger={setOpenCategory} onClickHandler={handleCategories}/>
 
-            <h2>test!!</h2>
-
             {count !== "" && flashCardsExist ? (
                 <Card card={flashCards[count]} setFlipped={flipped} onClick={() => setSide(!flipped)} count={fractionUnicode(count+1, flashCards.length)} />
             ) : null}

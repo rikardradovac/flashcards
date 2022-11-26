@@ -45,7 +45,7 @@ const Sidebar = ({children}) => {
                <div className="top_section">
                    <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>
                    <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
-                       <FaIcons.FaBars onClick={toggle}/>
+                       {isOpen ? <AiIcons.AiOutlineClose onClick={toggle}/> :<FaIcons.FaBars onClick={toggle}/>}
                    </div>
                </div>
                {

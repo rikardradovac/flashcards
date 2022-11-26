@@ -1,14 +1,16 @@
 .card-container {
     position: relative;
-    background-color: gainsboro;
+    background-color: #8DAB7F;
     top: 100px;
     height: 500px;
     border-radius: 25px;
     width: 90%;
-    left: 5%;
-
-
-
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+    border-color: #394032;
+    border-width: 10px;
+    border-style: solid;
 }
 
 .card-content {
@@ -20,7 +22,7 @@
 
 .count {
     position: relative;
-    left: 48%;
-    top: 195px;
+    left: 46%;
+    top: 190px;
 }
 

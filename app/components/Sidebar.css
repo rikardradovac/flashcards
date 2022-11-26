@@ -7,6 +7,7 @@
 .container{
     display:flex;
     position: absolute;
+    
 
 }
 main{
@@ -17,18 +18,22 @@ main{
 
 }
 .sidebar{
-    background: #000;
+    background: #394032;
     color: #fff;
     height: 700px;
     width: 200px;
     min-height: 800px;
     transition: all 0.5s;
+    border-right: black;
+    border-width: 0 1px 0 0;
+    border-style: solid;
+
 }
 .top_section{
     display: flex;
     align-items:center;
     padding:20px 15px;
-    cursor:pointer;
+    
 }
 
 .logo{
@@ -38,6 +43,7 @@ main{
     display: flex;
     font-size: 25px;
     margin-left: 50px;
+    cursor:pointer;
 }
 .link{
     display: flex;
@@ -47,12 +53,12 @@ main{
     transition: all 0.3s;
 }
 .link:hover{
-    background:lightskyblue;
+    background:#CFEE9E;
     color: #000;
     transition: all 0.5s;
 }
 .active{
-    background: lightskyblue;
+    background: #CFEE9E;
     color: #000;
 }
 .icon, .link_text{

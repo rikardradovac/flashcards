@@ -59,8 +59,9 @@ const List = () => {
 
     return (
         <div className="list-container">
-                {listCard}
             <h1>Total cards: {cardsCount}</h1>
+                {listCard}
+            
         </div>
     )
 }

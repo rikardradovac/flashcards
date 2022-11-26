@@ -1,8 +1,7 @@
 .category-content {
     position: relative;
     text-align: center;
-    
-    
+    color: #1E2019;;
 
 }
 
@@ -11,8 +10,20 @@
 }
 
 
+
+.category:hover {
+    background-color: #5E8B90;
+}
+
+
+.category {
+    margin: 2%;
+    cursor: pointer;
+}
+
+
 .category-popup {
-    background-color: white;
+    background-color: #587B7F;
 
     position:static;
     width: 100px;

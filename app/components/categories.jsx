@@ -7,7 +7,7 @@ const Categories = (props) => {
     const categories =  "categories" in localStorage ? JSON.parse(localStorage.getItem("categories")) : null
     const cats = ["cat1", "cat2", "cat3"]
     const listCars = cats.map((category, index) => 
-    <li className="categories" key={index} onClick={() => props.onClickHandler(category)}>{category}</li>)
+    <li className="category" key={index} onClick={() => props.onClickHandler(category)}>{category}</li>)
 
 
     return props.trigger ? (

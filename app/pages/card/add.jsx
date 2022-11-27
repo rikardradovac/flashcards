@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./add.css";
 
 
+// localStorage.clear()
 const AddCardObject = (front, back) => {
     const flashcardsExist = localStorage.length > 0 && "flashcards" in localStorage ? true : false;
 

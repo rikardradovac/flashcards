@@ -1,0 +1,29 @@
+.flex-container {
+    position: relative;
+    background-color: #1E2019;
+	outline: none;
+	margin-inline: 0px;
+	min-width: 700px;
+	width: 1500px;
+	min-height: 800px;
+	max-width: 100vw;
+	height: 100vh;
+	z-index: 0;
+	left: 0px;
+	top: 0px;
+	transition: all 0.3s;
+	color: white;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+ 
+.flex-container>* {
+    flex: 1 1 250px;
+}
+	
+
+.main-container {
+    background-color: #1E2019;
+}

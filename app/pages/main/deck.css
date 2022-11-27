@@ -1,0 +1,8 @@
+.deck-container {
+    background-color: #95D5B2;
+    width: 200px;
+    margin: 2%;
+    height: 200px;
+    
+    cursor: pointer;
+}

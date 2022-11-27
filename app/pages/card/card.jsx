@@ -3,13 +3,8 @@ import "./card.css";
 
 
 
-// const flashCards = JSON.parse(localStorage.getItem("flashcards"));
-
-// console.log("card.jsx", flashCards)
-
 
 const Card = (props) => {
-
     return (
         <div className="card-container" onClick={props.onClick}>
             <div className="card-content">
@@ -18,8 +13,9 @@ const Card = (props) => {
             </div>
 
         </div>
-    )
-}
+    );
+};
+
 
 
 export default Card

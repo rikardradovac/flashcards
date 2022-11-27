@@ -47,7 +47,7 @@ function createWindow() {
     if (isDevelopment) {
         win.loadURL("http://localhost:40992");
     } else {        
-        win.loadFile("app/dist/index.html");
+        win.loadFile(path.resolve(__dirname, "../dist/index.html"))
     }
 }
 

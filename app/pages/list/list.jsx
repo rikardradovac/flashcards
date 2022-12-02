@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "./list.css";
 
-
-
-
 const List = () => {
 
 
@@ -30,7 +27,7 @@ const List = () => {
 		);
 	};
 
-
+    
 	const flashcardsExist = localStorage.length > 0 && "flashcards" in localStorage ? true : false;
 
     const cardList = flashcardsExist ? JSON.parse(localStorage.getItem("flashcards")) : null
@@ -42,7 +39,7 @@ const List = () => {
 
 	const [cardsCount, setCardsCount] = flashcardsExist ? useState(JSON.parse(localStorage.getItem("flashcards")).length) : useState(0);
     const [cardsRender, setCardsRender] = listCard ? useState(listCard) : useState("")
-    const [filtered, setFiltered] = useState(false); // are we showing filtered cards or all?
+    const [filtered, setFiltered] = useState(false);
 
     const showFilteredCards = (query) => {
         
@@ -54,15 +51,13 @@ const List = () => {
         };
 
         if (query == "") {   // default
-            setFiltered(false);
             setCardsRender(listCard);
+            setFiltered(true)
             return
         }
         
         const filteredCards = cardList.filter(filterCards) // filter out cards that do not contain query
         
-        console.log(filteredCards)
-        console.log(filteredCards.length < cardList.length)
         if (filteredCards.length < cardList.length) {
             let indices = [];
             for (let i = 0; i < filteredCards.length; i++) {
@@ -70,12 +65,11 @@ const List = () => {
             }
             
             let remainingCards = filteredCards.map((flashcard, index) => <ListItem key={indices[index]} flashcard={flashcard} index={indices[index]} />);
-            console.log("REAL INDEX:", indices[0])
             setCardsRender(remainingCards)
             setFiltered(true)
         } else {
-            setFiltered(false);
             setCardsRender(listCard)
+            setFiltered(false)
         }
     }
 
@@ -84,8 +78,37 @@ const List = () => {
 	const deleteCard = (index) => {
 		cardList.splice(index, 1);
 
-		localStorage.setItem("flashcards", JSON.stringify(cardList)); //update array
+        if ("counter" in localStorage) {
+            let count = parseInt(localStorage.getItem("counter"));
+            count = count !== 0 ?  count - 1 : 0
+            localStorage.setItem("counter", count.toString());
 
+        } 
+        
+		localStorage.setItem("flashcards", JSON.stringify(cardList)); //update array
+        
+
+
+        listCard = cardList.map((flashcard, index) => <ListItem key={index} flashcard={flashcard} index={index} />);
+
+        if (filtered) {
+            let indices = [];
+            for (let i = 0; i < cardsRender.length; i++) {
+                indices.push(cardList.indexOf(cardsRender[i]))
+            }
+            let remainingCards;
+            if (indices.length === 0) {
+                remainingCards = null
+            } else {
+                remainingCards = cardsRender.map((flashcard, index) => <ListItem key={indices[index]} flashcard={flashcard} index={indices[index]} />);
+            }
+            
+            setCardsRender(null)
+            
+        } else {
+            setCardsRender(listCard)
+        }
+        
 		setCardsCount(cardsCount - 1);
 	};
 
@@ -103,7 +126,6 @@ const List = () => {
 			</form>
 			<h1>Total cards: {cardsCount}</h1>
             {cardsRender}
-			{/* {filtered ? cardsRender : cardsRender} */}
 		</div>
 	);
 }; 

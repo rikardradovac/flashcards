@@ -8,6 +8,7 @@ import "./index.css";
 const container = document.getElementById("target");
 const root = createRoot(container);
 
+
 root.render(
     <HashRouter>
         <AppRoutes />

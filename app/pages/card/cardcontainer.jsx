@@ -23,7 +23,8 @@ const CardContainer = () => {
 		SetCounter(0); // Stops index going out of bounds
 	}
 
-
+	
+	console.log(count)
 	const updateCounter = (direction) => {
 		var savedCount = counterExists ? parseInt(localStorage.getItem("counter")) : 0;
 
@@ -86,6 +87,7 @@ const CardContainer = () => {
 		setOpenCategory(!openCategory);
 	};
 
+
 	const CardSide = (props) => {
 		return (
 			<div className="card-container" onClick={() => setSide(!flipped)}>
@@ -96,7 +98,7 @@ const CardContainer = () => {
 			</div>
 		);
 	};
-
+	
 	return (
 		<div className="cardview-container">
 			<h1>Flash card view</h1>

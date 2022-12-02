@@ -1,6 +1,6 @@
 .cardview-container {
 	position: relative;
-    background-color: #1E2019;
+	background-color: #1e2019;
 	outline: none;
 	margin-inline: 0px;
 	min-width: 700px;
@@ -13,24 +13,19 @@
 	top: 0px;
 	transition: all 0.3s;
 	color: white;
-
-	
 }
 
 .add-button {
-
 	background-color: orange;
-  	padding: 2px;
-  	border: none;
-  	opacity: 0.6;
-  
+	padding: 2px;
+	border: none;
+	opacity: 0.6;
 }
 
-.add-button:hover{
-  background-color: cyan;
-  opacity: 1;
+.add-button:hover {
+	background-color: cyan;
+	opacity: 1;
 }
-
 
 .category-button {
 	position: absolute;

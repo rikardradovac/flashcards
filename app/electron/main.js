@@ -46,12 +46,11 @@ function createWindow() {
     // Load our HTML file
     if (isDevelopment) {
         win.loadURL("http://localhost:40992");
+        win.webContents.openDevTools();
     } else {        
         win.loadFile(path.resolve(__dirname, "../dist/index.html"))
     }
 }
-
-
 
 
 // This method is called when Electron

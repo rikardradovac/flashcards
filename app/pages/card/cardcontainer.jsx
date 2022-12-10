@@ -24,7 +24,6 @@ const CardContainer = () => {
 	}
 
 	
-	console.log(count)
 	const updateCounter = (direction) => {
 		var savedCount = counterExists ? parseInt(localStorage.getItem("counter")) : 0;
 

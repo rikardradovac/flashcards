@@ -1,5 +1,5 @@
-fix search function
-implement pictures in cards
-fix main menu
-MAYBE MIGRATE TO ELECTRON STORE
-simulate ordinary game, ie shuffle (how will the indices keep up?)
+PRIORITY ORDER:
+    implement pictures in cards
+    fix main menu
+    MAYBE MIGRATE TO ELECTRON STORE
+    simulate ordinary game, ie shuffle (how will the indices keep up?)

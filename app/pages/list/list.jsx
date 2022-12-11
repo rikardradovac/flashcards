@@ -56,8 +56,9 @@ const List = () => {
 	const [cardsCount, setCardsCount] = flashcardsExist ? useState(JSON.parse(localStorage.getItem("flashcards")).length) : useState(0);
     const [cardsRender, setCards] = cardList ? useState(cardList) : useState("")
     const cardListRef = useRef(cardList) // ref for correctly handling the cards
-    let filtered = "filteredState" in localStorage ? localStorage.getItem("filteredState") : false;  // variable for keeping the filtered state
-
+    let filtered = "filteredState" in localStorage ? useRef(Boolean(localStorage.getItem("filteredState").current)) : useRef(false);  // variable for keeping the filtered state
+    console.log("FILTERED", filtered.current)
+    
     const showFilteredCards = (query) => {
         
         const filterCards = (card) => {
@@ -69,7 +70,7 @@ const List = () => {
 
         if (query == "") {   // default
             setCards(cardList);
-            filtered = false;
+            filtered.current = false;
             localStorage.setItem("filteredState", filtered)
             return
         }
@@ -87,11 +88,11 @@ const List = () => {
 
             setCards(remainingCards)
             cardListRef.current = remainingCards // updating the ref
-            filtered = true;
+            filtered.current = true;
             localStorage.setItem("filteredState", filtered)
         } else {
             setCards(listCard)
-            filtered = false;
+            filtered.current = false;
             localStorage.setItem("filteredState", filtered)
         }
         
@@ -103,11 +104,11 @@ const List = () => {
         // we get an index from the TOTAL list, we need to map it to our filtered
         //we pop the filtered index and update the current rendered cards
 
-
+        console.log(filtered.current)
+        
         let tempArr = [...cardListRef.current]  // this array keeps track of the cards to render
         
-
-        if (filtered) {
+        if (filtered.current) {
             // mapping for the correct index
             const filteredIndex = tempArr.map((object) => object.props.flashcard).indexOf(cardsRender[index])
 
@@ -145,7 +146,10 @@ const List = () => {
             cardListRef.current = [...tempArr]
             
         } else {
-            setCards(cardsRender)
+            
+            cardList.splice(index, 1)  // remove the selected card from the whole array
+            localStorage.setItem("flashcards", JSON.stringify(cardList)); //update array
+            setCards(cardList)
         }
         if ("counter" in localStorage) {
             let count = parseInt(localStorage.getItem("counter"));

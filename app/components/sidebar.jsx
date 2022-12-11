@@ -3,6 +3,9 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { NavLink } from 'react-router-dom';
 import "./Sidebar.css";
+import { GiCardRandom } from "react-icons/gi"
+import { BsViewList } from "react-icons/bs"
+import { RiLayoutMasonryFill } from "react-icons/ri"
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
@@ -11,33 +14,18 @@ const Sidebar = ({children}) => {
         {
             path:"/",
             name:"Dashboard",
-            icon:<FaIcons.FaTh/>
+            icon:<RiLayoutMasonryFill/>
         },
         {
             path:"/flashcards",
             name:"Flashcards",
-            icon:<FaIcons.FaUserAlt/>
+            icon:<GiCardRandom />
         },
         {
             path:"/flashcards-list",
             name:"Analytics",
-            icon:<FaIcons.FaRegChartBar/>
+            icon:<BsViewList/>
         },
-        {
-            path:"/comment",
-            name:"Comment",
-            icon:<FaIcons.FaCommentAlt/>
-        },
-        {
-            path:"/product",
-            name:"Product",
-            icon:<FaIcons.FaShoppingBag/>
-        },
-        {
-            path:"/productList",
-            name:"Product",
-            icon:<FaIcons.FaThList/>
-        }
     ]
     return (
         <div className="container">

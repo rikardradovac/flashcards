@@ -6,6 +6,19 @@ import Categories from "../../components/categories";
 import fractionUnicode from "fraction-unicode";
 import ReactCardFlip from "react-card-flip";
 
+// dataURLtoFile is a helper function that converts a data URL to a File object
+function dataURLtoFile(dataurl, filename) {
+	const arr = dataurl.split(",");
+	const mime = arr[0].match(/:(.*?);/)[1];
+	const bstr = atob(arr[1]);
+	let n = bstr.length;
+	const u8arr = new Uint8Array(n);
+	while (n--) {
+		u8arr[n] = bstr.charCodeAt(n);
+	}
+	return new File([u8arr], filename, { type: mime });
+}
+
 const CardContainer = () => {
 	const storageExists = localStorage.length > 0;
 	const flashCardsExist = storageExists ? "flashcards" in localStorage && JSON.parse(localStorage.getItem("flashcards")).length > 0 : false; // if we have storage, we check if flashcards exists
@@ -23,7 +36,9 @@ const CardContainer = () => {
 		SetCounter(0); // Stops index going out of bounds
 	}
 
-	
+	const firstPageImage = flashCardsExist && typeof count === "number" ? flashCards[count].firstPageImage : null;
+	const secondPageImage = flashCardsExist && typeof count === "number" ? flashCards[count].secondPageImage : null;
+
 	const updateCounter = (direction) => {
 		var savedCount = counterExists ? parseInt(localStorage.getItem("counter")) : 0;
 
@@ -86,18 +101,25 @@ const CardContainer = () => {
 		setOpenCategory(!openCategory);
 	};
 
-
 	const CardSide = (props) => {
+		// const dataUrl = localStorage.getItem('file');
+		const image = props.pageImage ? dataURLtoFile(props.pageImage, "pic") : null;
+
 		return (
 			<div className="card-container" onClick={() => setSide(!flipped)}>
 				<div className="card-content">
 					<h1>{props.side}</h1>
 					<h1 className="count">{props.count}</h1>
+					{props.pageImage && (
+						<div className="image-box">
+							<img src={URL.createObjectURL(image)} />
+						</div>
+					)}
 				</div>
 			</div>
 		);
 	};
-	
+
 	return (
 		<div className="cardview-container">
 			<h1>Flash card view</h1>
@@ -114,8 +136,8 @@ const CardContainer = () => {
 
 			{count !== "" && flashCardsExist ? (
 				<ReactCardFlip isFlipped={flipped} flipDirection="vertical">
-					<CardSide side={flashCards[count].firstPage} count={fractionUnicode(count + 1, flashCards.length)} />
-					<CardSide side={flashCards[count].secondPage} count={fractionUnicode(count + 1, flashCards.length)} />
+					<CardSide side={flashCards[count].firstPage} count={fractionUnicode(count + 1, flashCards.length)} pageImage={firstPageImage} />
+					<CardSide side={flashCards[count].secondPage} count={fractionUnicode(count + 1, flashCards.length)} pageImage={secondPageImage} />
 				</ReactCardFlip>
 			) : null}
 			<AddCard trigger={addCard} setTrigger={setAddCard}>

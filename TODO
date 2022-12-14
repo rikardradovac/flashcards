@@ -1,5 +1,6 @@
 PRIORITY ORDER:
+    MIGRATE TO ELECTRON STORE
+    change key access from "flashcards"
     implement pictures in cards
     fix main menu
-    MAYBE MIGRATE TO ELECTRON STORE
     simulate ordinary game, ie shuffle (how will the indices keep up?)

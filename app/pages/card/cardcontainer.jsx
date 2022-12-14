@@ -19,28 +19,32 @@ function dataURLtoFile(dataurl, filename) {
 	return new File([u8arr], filename, { type: mime });
 }
 
-const CardContainer = () => {
-	const storageExists = localStorage.length > 0;
-	const flashCardsExist = storageExists ? "flashcards" in localStorage && JSON.parse(localStorage.getItem("flashcards")).length > 0 : false; // if we have storage, we check if flashcards exists
-	const counterExists = storageExists ? "counter" in localStorage : false; // if we have storage, we check if counter exists
+const KEY = "flashcards";
+const COUNTERKEY = "counter";
 
-	const flashCards = flashCardsExist ? JSON.parse(localStorage.getItem("flashcards")) : null;
+const CardContainer = () => {
+	const flashCardsExist = store.has(KEY);
+	const flashCards = flashCardsExist ? store.get("flashcards") : null;
+	const flashCardsIsNotEmpty = flashCardsExist ? flashCards.length > 0 : false;
+	const counterExists = store.has(COUNTERKEY);
 
 	const [addCard, setAddCard] = useState(false);
 	const [openCategory, setOpenCategory] = useState(false);
-	const [count, SetCounter] = counterExists ? useState(parseInt(localStorage.getItem("counter"))) : useState("");
+	const [count, SetCounter] = counterExists ? useState(store.get(COUNTERKEY)) : useState("");
 
 	const [flipped, setSide] = useState(false);
 
-	if (flashCardsExist && count >= flashCards.length) {
-		SetCounter(0); // Stops index going out of bounds
-	}
+	// if (flashCardsExist && count >= flashCards.length) {
+	// 	SetCounter(0); // Stops index going out of bounds
+	// }
 
-	const firstPageImage = flashCardsExist && typeof count === "number" ? flashCards[count].firstPageImage : null;
-	const secondPageImage = flashCardsExist && typeof count === "number" ? flashCards[count].secondPageImage : null;
+	// checking if images exist
+	console.log("flashcardsss", flashCards, count, typeof count);
+	const firstPageImage = flashCardsExist && typeof count === "number" && flashCardsIsNotEmpty ? flashCards[count].firstPageImage : null;
+	const secondPageImage = flashCardsExist && typeof count === "number" && flashCardsIsNotEmpty ? flashCards[count].secondPageImage : null;
 
 	const updateCounter = (direction) => {
-		var savedCount = counterExists ? parseInt(localStorage.getItem("counter")) : 0;
+		var savedCount = counterExists ? store.get(COUNTERKEY) : 0;
 
 		if (direction === "back") {
 			savedCount += -1;
@@ -48,8 +52,8 @@ const CardContainer = () => {
 		} else {
 			savedCount += 1;
 		}
-		savedCount = savedCount % flashCards.length === 0 ? 0 : savedCount;
-		localStorage.setItem("counter", savedCount.toString());
+		savedCount = savedCount % flashCards.length;
+		store.set(COUNTERKEY, savedCount);
 
 		SetCounter(savedCount);
 
@@ -63,7 +67,7 @@ const CardContainer = () => {
 		}
 		if (flashCards.length === 1) {
 			SetCounter(0);
-			localStorage.setItem("counter", JSON.stringify(0));
+			store.set(COUNTERKEY, 0);
 			return;
 		}
 
@@ -80,11 +84,11 @@ const CardContainer = () => {
 			return;
 		}
 
-		var savedCount = counterExists ? parseInt(localStorage.getItem("counter")) : 0;
+		var savedCount = counterExists ? store.get(COUNTERKEY, savedCount) : 0;
 		savedCount += 1;
 
 		savedCount = savedCount % flashCards.length == 0 ? 0 : savedCount;
-		localStorage.setItem("counter", savedCount.toString());
+		store.set(COUNTERKEY, savedCount);
 
 		SetCounter(savedCount);
 
@@ -97,7 +101,7 @@ const CardContainer = () => {
 
 	const handleCategories = (category) => {
 		flashCards[count].category = category;
-		localStorage.setItem("flashcards", JSON.stringify(flashCards));
+		store.set(KEY, flashCards);
 		setOpenCategory(!openCategory);
 	};
 
@@ -105,16 +109,19 @@ const CardContainer = () => {
 		// const dataUrl = localStorage.getItem('file');
 		const image = props.pageImage ? dataURLtoFile(props.pageImage, "pic") : null;
 
-		return (
+		return props.pageImage ? (
 			<div className="card-container" onClick={() => setSide(!flipped)}>
 				<div className="card-content">
 					<h1>{props.side}</h1>
 					<h1 className="count">{props.count}</h1>
-					{props.pageImage && (
-						<div className="image-box">
-							<img src={URL.createObjectURL(image)} />
-						</div>
-					)}
+					<img className="image-box" src={URL.createObjectURL(image)} />
+				</div>
+			</div>
+		) : (
+			<div className="card-container" onClick={() => setSide(!flipped)}>
+				<div className="card-content">
+					<h1>{props.side}</h1>
+					<h1 className="count">{props.count}</h1>
 				</div>
 			</div>
 		);
@@ -134,7 +141,7 @@ const CardContainer = () => {
 			</button>
 			<Categories trigger={openCategory} setTrigger={setOpenCategory} onClickHandler={handleCategories} />
 
-			{count !== "" && flashCardsExist ? (
+			{typeof count === "number" && flashCardsExist && flashCardsIsNotEmpty ? (
 				<ReactCardFlip isFlipped={flipped} flipDirection="vertical">
 					<CardSide side={flashCards[count].firstPage} count={fractionUnicode(count + 1, flashCards.length)} pageImage={firstPageImage} />
 					<CardSide side={flashCards[count].secondPage} count={fractionUnicode(count + 1, flashCards.length)} pageImage={secondPageImage} />

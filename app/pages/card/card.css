@@ -26,3 +26,9 @@
     top: 190px;
 }
 
+.image-box {
+    position: relative;
+    width: 90%;
+    height: 100%;
+}
+

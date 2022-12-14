@@ -1,6 +1,12 @@
 import React, { useState, useRef } from "react";
 import "./list.css";
 
+store.log()
+
+
+
+const KEY = "flashcards"
+const COUNTERKEY = "counter"
 function compareObjects(obj1, obj2) {
     // first, check that the objects have the same number of keys
     if (Object.keys(obj1).length !== Object.keys(obj2).length) {
@@ -44,20 +50,14 @@ const List = () => {
 		);
 	};
 
-	const flashcardsExist = localStorage.length > 0 && "flashcards" in localStorage ? true : false;
+	const flashcardsExist = store.has(KEY)
 
-    const cardList = flashcardsExist ? JSON.parse(localStorage.getItem("flashcards")) : null
+    const cardList = flashcardsExist ? store.get(KEY) : null
 
-    let listCard = null;
-    // if (cardList !== null) {
-	// 	listCard = cardList.map((flashcard, index) => <ListItem key={index} flashcard={flashcard} index={index} />);
-	// }
-
-	const [cardsCount, setCardsCount] = flashcardsExist ? useState(JSON.parse(localStorage.getItem("flashcards")).length) : useState(0);
+	const [cardsCount, setCardsCount] = flashcardsExist ? useState(store.get(KEY).length) : useState(0);
     const [cardsRender, setCards] = cardList ? useState(cardList) : useState("")
     const cardListRef = useRef(cardList) // ref for correctly handling the cards
-    let filtered = "filteredState" in localStorage ? useRef(Boolean(localStorage.getItem("filteredState").current)) : useRef(false);  // variable for keeping the filtered state
-    console.log("FILTERED", filtered.current)
+    let filtered = store.has("filtered") ? useRef(store.get("filtered").current) : useRef(false);  // variable for keeping the filtered state
     
     const showFilteredCards = (query) => {
         
@@ -71,12 +71,11 @@ const List = () => {
         if (query == "") {   // default
             setCards(cardList);
             filtered.current = false;
-            localStorage.setItem("filteredState", filtered)
+            store.set("filteredState", filtered)
             return
         }
         
         const filteredCards = cardList.filter(filterCards) // filter out cards that do not contain query
-        
         if (filteredCards.length < cardList.length) {
             let indices = [];
             for (let i = 0; i < filteredCards.length; i++) {
@@ -89,11 +88,11 @@ const List = () => {
             setCards(remainingCards)
             cardListRef.current = remainingCards // updating the ref
             filtered.current = true;
-            localStorage.setItem("filteredState", filtered)
+            store.set("filteredState", filtered)
         } else {
-            setCards(listCard)
+            setCards(cardList)
             filtered.current = false;
-            localStorage.setItem("filteredState", filtered)
+            store.set("filteredState", filtered)
         }
         
     }   
@@ -104,7 +103,7 @@ const List = () => {
         // we get an index from the TOTAL list, we need to map it to our filtered
         //we pop the filtered index and update the current rendered cards
 
-        console.log(filtered.current)
+        console.log("FILTERED IN DEL", filtered.current)
         
         let tempArr = [...cardListRef.current]  // this array keeps track of the cards to render
         
@@ -116,7 +115,7 @@ const List = () => {
 
             
             cardList.splice(index, 1)  // remove the selected card from the whole array
-            localStorage.setItem("flashcards", JSON.stringify(cardList)); //update array
+            store.set(KEY, cardList); //update array
             
             let matchingIndices = cardList.map((obj, index) => tempArr.some(obj2 => compareObjects(obj, obj2.props.flashcard)) ? index : -1).filter(index => index !== -1);
             
@@ -148,13 +147,13 @@ const List = () => {
         } else {
             
             cardList.splice(index, 1)  // remove the selected card from the whole array
-            localStorage.setItem("flashcards", JSON.stringify(cardList)); //update array
+            store.set(KEY, cardList); //update array
             setCards(cardList)
         }
-        if ("counter" in localStorage) {
-            let count = parseInt(localStorage.getItem("counter"));
+        if (store.has(COUNTERKEY)) {
+            let count = store.get(COUNTERKEY);
             count = count !== 0 ?  count - 1 : 0
-            localStorage.setItem("counter", count.toString());
+            store.set(COUNTERKEY, count);
 
             } 
 		setCardsCount(cardsCount - 1);

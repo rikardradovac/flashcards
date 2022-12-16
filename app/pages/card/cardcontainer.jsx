@@ -39,7 +39,6 @@ const CardContainer = () => {
 	// }
 
 	// checking if images exist
-	console.log("flashcardsss", flashCards, count, typeof count);
 	const firstPageImage = flashCardsExist && typeof count === "number" && flashCardsIsNotEmpty ? flashCards[count].firstPageImage : null;
 	const secondPageImage = flashCardsExist && typeof count === "number" && flashCardsIsNotEmpty ? flashCards[count].secondPageImage : null;
 
@@ -111,10 +110,11 @@ const CardContainer = () => {
 
 		return props.pageImage ? (
 			<div className="card-container" onClick={() => setSide(!flipped)}>
-				<div className="card-content">
-					<h1>{props.side}</h1>
-					<h1 className="count">{props.count}</h1>
-					<img className="image-box" src={URL.createObjectURL(image)} />
+				<div className="card-content-image">
+					<img className="image-box" src={URL.createObjectURL(image)} key={image}/>
+					<h1 className="text-label">{props.side}</h1>
+					<h1 className="count-image">{props.count}</h1>
+					
 				</div>
 			</div>
 		) : (
@@ -143,8 +143,8 @@ const CardContainer = () => {
 
 			{typeof count === "number" && flashCardsExist && flashCardsIsNotEmpty ? (
 				<ReactCardFlip isFlipped={flipped} flipDirection="vertical">
-					<CardSide side={flashCards[count].firstPage} count={fractionUnicode(count + 1, flashCards.length)} pageImage={firstPageImage} />
-					<CardSide side={flashCards[count].secondPage} count={fractionUnicode(count + 1, flashCards.length)} pageImage={secondPageImage} />
+					<CardSide side={flashCards[count].firstPage} count={String(count+1) + "/" + String(flashCards.length)} pageImage={firstPageImage} />
+					<CardSide side={flashCards[count].secondPage} count={String(count+1) + "/" + String(flashCards.length)} pageImage={secondPageImage} />
 				</ReactCardFlip>
 			) : null}
 			<AddCard trigger={addCard} setTrigger={setAddCard}>

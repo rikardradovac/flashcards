@@ -40,7 +40,6 @@ const AddCard = (props) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault;
-		console.log("FIRST IM", firstImageFile);
 		AddCardObject(firstSide, secondSide, firstImageFile);
 		setFirstSide("");
 		setsecondSide("");

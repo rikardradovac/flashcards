@@ -2,9 +2,9 @@
     position: relative;
     background-color: #8DAB7F;
     top: 100px;
-    height: 500px;
+    height: 70vh;
     border-radius: 25px;
-    width: 90%;
+    width: 85vw;
     margin-left: 5%;
     margin-right: 5%;
     cursor: pointer;
@@ -26,9 +26,28 @@
     top: 190px;
 }
 
-.image-box {
+.card-content-image {
     position: relative;
-    width: 90%;
-    height: 100%;
+    text-align: center;
+    top: 0px;
 }
 
+
+.image-box {
+    position: relative;
+    margin: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 20px;
+    max-height: 500px;
+}
+
+.text-label {
+    margin-top: -5%;
+}
+
+.count-image {
+    position: relative;
+    left: 46%;
+    margin-top: -5%;
+}

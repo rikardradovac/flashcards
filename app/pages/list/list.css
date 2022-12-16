@@ -3,7 +3,7 @@
 .list-container {
     background-color: #1E2019;
     width: 99vw;
-    height: 800px;
+    height: 100vh;
     color: white;
     overflow-y:scroll
     
@@ -19,6 +19,7 @@
     margin-bottom: 1%;  
     top: 2%;
     background-color: #8DAB7F;
+    width: 70%;
     vertical-align: middle;
     border-radius: 5px;
     border-width: 3px;

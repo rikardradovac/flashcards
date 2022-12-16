@@ -20,7 +20,7 @@ main{
 .sidebar{
     background: #394032;
     color: #fff;
-    height: 700px;
+    height: 100vh;
     width: 200px;
     min-height: 800px;
     transition: all 0.5s;

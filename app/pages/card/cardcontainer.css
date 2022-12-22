@@ -13,6 +13,7 @@
 	top: 0px;
 	transition: all 0.3s;
 	color: white;
+	text-align: center;
 }
 
 .add-button {
@@ -31,3 +32,67 @@
 	position: absolute;
 	left: 70%;
 }
+
+.options-container {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	height: 100px;
+}
+
+#next-button {
+	position: relative;
+	left: 510px;
+	top: 30px;
+}
+
+#next-button:hover {
+	color: gainsboro;
+}
+
+
+#prev-button {
+	position: relative;
+	left: -560px;
+	top: 30px;
+	cursor: pointer;
+}
+
+#prev-button:hover {
+	color: gainsboro;
+}
+
+#add-button {
+	position: relative;
+	width: 200px;
+	left: -20px;
+	top: 20px;
+	background-color: white;
+	height: 50px;
+	color: black;
+	font-size: larger;
+	border-radius: 15px;
+}
+
+#category-button {
+	position: relative;
+	width: 200px;
+	height: 50px;
+	left: 30;
+	top: 20px;
+	background-color: white;
+	color: black;
+	font-size: larger;
+	border-radius: 15px;
+
+}
+
+#category-button:hover {
+	background-color: gray;
+}
+
+#add-button:hover {
+	background-color: gray;
+}
+

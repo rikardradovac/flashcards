@@ -1,6 +1,6 @@
 PRIORITY ORDER:
-    MIGRATE TO ELECTRON STORE
-    change key access from "flashcards"
-    implement pictures in cards
-    fix main menu
+    drop-down menu in list and play, to choose
     simulate ordinary game, ie shuffle (how will the indices keep up?)
+    insert api key in user settings
+    (change categories state) 
+    FIX INTERFACE 

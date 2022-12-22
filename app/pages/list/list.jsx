@@ -5,7 +5,7 @@ store.log()
 
 
 
-const KEY = "flashcards"
+const KEY = store.get("activeKey")
 const COUNTERKEY = "counter"
 function compareObjects(obj1, obj2) {
     // first, check that the objects have the same number of keys

@@ -6,6 +6,8 @@ import "./Sidebar.css";
 import { GiCardRandom } from "react-icons/gi"
 import { BsViewList } from "react-icons/bs"
 import { RiLayoutMasonryFill } from "react-icons/ri"
+import { IoIosOptions } from "react-icons/io"
+
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
@@ -26,6 +28,16 @@ const Sidebar = ({children}) => {
             name:"Analytics",
             icon:<BsViewList/>
         },
+        {
+            path:"/text-generation",
+            name:"Generation",
+            icon:<FaIcons.FaRobot/>
+        },
+        {
+            path:"/options",
+            name:"Options",
+            icon:<IoIosOptions />
+        }
     ]
     return (
         <div className="container">

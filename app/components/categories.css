@@ -1,18 +1,49 @@
+
+.category-popup {
+    background-color: #8DAB7F;
+    width: 600px;
+    height: 75px;
+    position: absolute;
+    left: 40%;
+    display: flex;
+    flex-direction: row;
+    z-index: 10;
+    margin: 10px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: black;
+
+}
+
 .category-content {
     position: relative;
     text-align: center;
-    color: #1E2019;;
+    color: #1E2019;
+    overflow-y: scroll;
+    left: 0;
+    flex: 1;
+    
+    
+    
 
 }
 
 .categories-list {
     list-style-type: none;
+    
+    
 }
 
 
+.add-category {
+    position: relative;
+    margin: 10px;
+
+}
 
 .category:hover {
-    background-color: #5E8B90;
+    background-color: #768f6a;
+    border-radius: 20px;
 }
 
 
@@ -22,12 +53,24 @@
 }
 
 
-.category-popup {
-    background-color: #587B7F;
 
-    position:static;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    left: 75%;
+
+
+
+#category-form {
+    left: 0;
+}
+
+input {
+    outline: none;
+}
+
+#exit-button {
+    color: white;
+    cursor: pointer;
+}
+
+#exit-button:hover {
+    color: gray;
+
 }

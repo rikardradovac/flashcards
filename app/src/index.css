@@ -3,4 +3,13 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     font-family: sans-serif;
+    background-color: #1E2019;
+    color: white;
+}
+h1 {
+    white-space: pre-wrap;
+}
+
+p {
+    white-space: pre-wrap;
 }

@@ -1,53 +1,61 @@
 .card-container {
+    display: flex;
     position: relative;
     background-color: #8DAB7F;
-    top: 100px;
-    height: 70vh;
+    top: 0px;
+    height: 75vh;
     border-radius: 25px;
     width: 85vw;
     margin-left: 5%;
-    margin-right: 5%;
+    
     cursor: pointer;
     border-color: #394032;
     border-width: 10px;
     border-style: solid;
+    vertical-align: middle;
+    
 }
 
 .card-content {
-    position: relative;
-    vertical-align: middle;
+    width: 100%;
+    display: flex;
+    align-items: center;
     text-align: center;
-    top: 230px;
+    justify-content: center;
+    
+    
 }
 
 .count {
-    position: relative;
-    left: 46%;
-    top: 190px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+
 }
 
 .card-content-image {
-    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    margin: 2%;
+    align-items: center;
     text-align: center;
-    top: 0px;
+    justify-items: center;
+    
 }
-
 
 .image-box {
     position: relative;
-    margin: 5%;
-    width: 90%;
-    height: 90%;
+    margin: 2%;
+    width: 50vw;
+    height: 45vh;
     border-radius: 20px;
-    max-height: 500px;
+
 }
 
 .text-label {
-    margin-top: -5%;
-}
-
-.count-image {
     position: relative;
-    left: 46%;
-    margin-top: -5%;
+    width: 50%;
+    
+    
 }

@@ -1,60 +1,74 @@
 import React, { useState } from "react";
 import "./add.css";
 
-// dataURLtoFille is a helper function that converts a data URL to a File object
-function dataURLtoFile(dataurl, filename) {
-	const arr = dataurl.split(",");
-	const mime = arr[0].match(/:(.*?);/)[1];
-	const bstr = atob(arr[1]);
-	let n = bstr.length;
-	const u8arr = new Uint8Array(n);
-	while (n--) {
-		u8arr[n] = bstr.charCodeAt(n);
-	}
-	return new File([u8arr], filename, { type: mime });
-}
+const APIKEY = "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";
+//APIIIII
+// const xhr = new XMLHttpRequest();
+// xhr.open('POST', 'https://api.openai.com/v1/completions');
+// xhr.setRequestHeader('Content-Type', 'application/json');
+// xhr.setRequestHeader('Authorization', `Bearer ${APIKEY}`);
+// xhr.onload = () => {
+// console.log(xhr.responseText);
+// };
+// xhr.send(JSON.stringify({
+// 	model: "text-davinci-003",
+// 	prompt: "What are 5 key points I should know when studying Ancient Rome?",
+// 	temperature: 0.3,
+// 	max_tokens: 150,
+// 	top_p: 1.0,
+// 	frequency_penalty: 0.0,
+// 	presence_penalty: 0.0,
+// }));
 
-const AddCardObject = (front, back, firstPageImage) => {
-	const flashcardsExist = store.has("flashcards");
+const AddCardObject = (front, back, firstPageImage, secondPageImage) => {
+	const KEY = store.get("activeKey")
+	const flashcardsExist = store.has(KEY);
+	console.log("add key active Y", KEY)
 
-	const flashCards = flashcardsExist ? store.get("flashcards") : [];
+	const flashCards = flashcardsExist ? store.get(KEY) : [];
 
 	let newCard = {
 		firstPage: front,
 		secondPage: back,
 		category: null,
 		firstPageImage: firstPageImage,
-		secondPageImage: null,
+		secondPageImage: secondPageImage,
 	};
 
-	console.log(newCard);
 	flashCards.push(newCard);
-	store.set("flashcards", flashCards);
+	store.set(KEY, flashCards);
 };
 
 const AddCard = (props) => {
 	const [firstSide, setFirstSide] = useState("");
-	const [secondSide, setsecondSide] = useState("");
+	const [secondSide, setSecondSide] = useState("");
 
 	const [firstImageFile, setFirstImageFile] = useState(null);
+	const [secondImageFile, setSecondImageFile] = useState(null);
 
 	const handleSubmit = (event) => {
 		event.preventDefault;
-		AddCardObject(firstSide, secondSide, firstImageFile);
+		AddCardObject(firstSide, secondSide, firstImageFile, secondImageFile);
 		setFirstSide("");
-		setsecondSide("");
+		setSecondSide("");
 		setFirstImageFile(null);
+		setSecondImageFile(null);
 		props.setTrigger(false);
 	};
 
-	const handleImage = (event) => {
+	const handleImage = (event, type) => {
 		let inputImage = event.target.files[0];
 		const reader = new FileReader();
 		reader.readAsDataURL(inputImage);
 
 		// storing image specs to localstorage
+
 		reader.onload = () => {
-			setFirstImageFile(String(reader.result));
+			if (type === "front") {
+				setFirstImageFile(String(reader.result));
+			} else if (type === "back") {
+				setSecondImageFile(String(reader.result));
+			}
 		};
 	};
 
@@ -65,29 +79,32 @@ const AddCard = (props) => {
 					Close
 				</button>
 				{props.children}
-				<form onSubmit={handleSubmit} name="card-form">
-					<label>
-						first side
-						<input type="text" value={firstSide} onChange={(event) => setFirstSide(event.target.value)} />
-					</label>
-					<label>
-						second side
-						<input type="text" value={secondSide} onChange={(event) => setsecondSide(event.target.value)} />
-					</label>
-					<label>
-						first side image
-						<input type="file" accept="image/png, image/jpeg" onChange={(event) => handleImage(event)} />
-						{/* <input type="file" value={imagePath} onChange={(event) => setImagepath(event.target.value)} /> */}
-					</label>
+				<form onSubmit={handleSubmit}>
+					<div className="card-form">
+						<label htmlFor="front">
+							<h1>Front</h1>
+						</label>
+						<textarea name="front" id="front" cols="30" rows="10" value={firstSide} onChange={(event) => setFirstSide(event.target.value)}></textarea>
+
+						<label htmlFor="image-front">
+							<h1>Front Image</h1>
+						</label>
+						<input type="file" accept="image/png, image/jpeg" onChange={(event) => handleImage(event, "front")} id="image-front" />
+
+						<label htmlFor="back">
+							{" "}
+							<h1>Back</h1>
+						</label>
+						<textarea name="front" id="front" cols="30" rows="10" value={secondSide} onChange={(event) => setSecondSide(event.target.value)}></textarea>
+
+						<label htmlFor="image-back">
+							{" "}
+							<h1>Back Image</h1>
+						</label>
+						<input type="file" accept="image/png, image/jpeg" onChange={(event) => handleImage(event, "back")} id="image-back" />
+					</div>
 					<input type="submit" />
 				</form>
-				<h1>{firstSide}</h1>
-				<h1>{secondSide}</h1>
-				{/* {imageFile && (
-        <img src={URL.createObjectURL(imageFile)} />
-      )} */}
-
-				{/* {imagePath && <img src={URL.createObjectURL(imagePath)} />} */}
 			</div>
 		</div>
 	) : null;

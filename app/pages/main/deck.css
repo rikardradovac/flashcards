@@ -1,8 +1,40 @@
 .deck-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #95D5B2;
-    width: 200px;
-    margin: 2%;
-    height: 200px;
-    
+    width: 300px;
+    margin: 15px;
+    height: 300px;  
     cursor: pointer;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+
+
+}
+
+
+.deck-container:hover{
+    background-color: #CFEE9E;
+}
+
+
+.deck-container-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #95D5B2;
+    width: 300px;
+    margin: 35px 15px 15px 15px;
+    height: 300px;  
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+
+}
+
+.deck-container-add:hover{
+    background-color: #CFEE9E;
 }

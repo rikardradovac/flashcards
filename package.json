@@ -47,12 +47,12 @@
     "postinstall": "electron-builder install-app-deps",
     "pack": "electron-builder --dir",
     "dist": "npm run preprod && electron-builder",
-    "dist-mac": "npm run preprod && electron-builder --mac",
+    "dist-mac": "npm run preprod && electron-builder --mac --universal",
     "dist-linux": "npm run preprod && electron-builder --linux",
     "dist-windows": "npm run preprod && electron-builder --windows"
   },
   "build": {
-    "productName": "MyProductName",
+    "productName": "Flashcards",
     "appId": "com.mycompany|electron.myproductname",
     "directories": {
       "buildResources": "resources"

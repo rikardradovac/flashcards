@@ -43,7 +43,7 @@
 
 #next-button {
 	position: relative;
-	left: 510px;
+	left: 40vw;
 	top: 30px;
 }
 
@@ -54,7 +54,7 @@
 
 #prev-button {
 	position: relative;
-	left: -560px;
+	left: -42vw;
 	top: 30px;
 	cursor: pointer;
 }
@@ -65,7 +65,7 @@
 
 #add-button {
 	position: relative;
-	width: 200px;
+	width: 15vw;
 	left: -20px;
 	top: 20px;
 	background-color: white;
@@ -77,7 +77,7 @@
 
 #category-button {
 	position: relative;
-	width: 200px;
+	width: 15vw;
 	height: 50px;
 	left: 30;
 	top: 20px;

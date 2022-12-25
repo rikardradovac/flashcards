@@ -6,13 +6,19 @@ import { MdOutlineClose } from "react-icons/md";
 const Categories = (props) => {
 
     
-    const [categories, setCategories] = store.has("categories") ? Array(store.get("categories")) : useState([]) 
+    const [categories, setCategories] = store.has("categories") ? useState(store.get("categories")) : useState([]) 
     const [category, setCategory] = useState("")  // used for adding a new category
 
     const handleCategoriesSubmit = (event) =>  {    
         event.preventDefault;
-        categories.push(category)
-        store.set("categories", categories)
+        if (category == "" || category === " ") {
+            return
+        }
+        let temp = [...categories]
+
+        temp.push(category)
+        setCategories(temp)
+        store.set("categories", temp)
         
     }
 

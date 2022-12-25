@@ -29,14 +29,14 @@ const CardContainer = () => {
 
 	if (typeof KEY === "undefined") {
 		// if we start without selecting activeKey, we use the first deck
-		if (store.has("decks")) {
-			KEY = store.get("decks")[0];
+		let deckExists = store.has("decks")
+		if (deckExists) {
+			let decks = store.get("decks")
+			KEY = decks.length > 0 ? store.get("decks")[0] : null;
 			store.set("activeKey", KEY);
-			console.log("keeey", KEY)
 
 		} 
 	}
-
 	const COUNTERKEY = "counter";
 
 	const flashCardsExist = store.has(KEY);
@@ -46,8 +46,9 @@ const CardContainer = () => {
 
 	const [addCard, setAddCard] = useState(false);
 	const [openCategory, setOpenCategory] = useState(false);
-	const [count, SetCounter] = counterExists ? useState(store.get(COUNTERKEY)) : useState("");
+	const [count, SetCounter] = (counterExists && flashCardsExist) ? (store.get(COUNTERKEY) >= flashCards.length ? useState(0) : useState(store.get(COUNTERKEY))) : useState("");
 
+	
 	const [flipped, setSide] = useState(false);
 
 	// checking if images exist

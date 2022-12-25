@@ -17,6 +17,7 @@
 }
 
 .card-content {
+    position: relative;
     width: 100%;
     display: flex;
     align-items: center;
@@ -31,6 +32,14 @@
     margin-top: 10px;
     margin-left: 10px;
 
+}
+
+.category-label {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    left: 85%;
+    font-size: large;
 }
 
 .card-content-image {

@@ -20,6 +20,7 @@ function dataURLtoFile(dataurl, filename) {
 	return new File([u8arr], filename, { type: mime });
 }
 
+
 const DropDownDecks = () => {};
 
 const CardContainer = () => {
@@ -31,7 +32,9 @@ const CardContainer = () => {
 		if (store.has("decks")) {
 			KEY = store.get("decks")[0];
 			store.set("activeKey", KEY);
-		}
+			console.log("keeey", KEY)
+
+		} 
 	}
 
 	const COUNTERKEY = "counter";
@@ -123,6 +126,7 @@ const CardContainer = () => {
 		return props.pageImage ? (
 			<div className="card-container" onClick={() => setSide(!flipped)}>
 				<h1 className="count">{props.count}</h1>
+				<h1 className="category-label">Category: {props.category}</h1>
 				<div className="card-content-image">
 					<p className="text-label">{props.side}</p>
 					<img className="image-box" src={URL.createObjectURL(image)} key={image} />
@@ -131,6 +135,7 @@ const CardContainer = () => {
 		) : (
 			<div className="card-container" onClick={() => setSide(!flipped)}>
 				<h1 className="count">{props.count}</h1>
+				<h1 className="category-label">Category: {props.category}</h1>
 				<div className="card-content">
 					<p>{props.side}</p>
 				</div>
@@ -155,8 +160,8 @@ const CardContainer = () => {
 
 			{typeof count === "number" && flashCardsExist && flashCardsIsNotEmpty ? (
 				<ReactCardFlip isFlipped={flipped} flipDirection="vertical">
-					<CardSide side={flashCards[count].firstPage} count={String(count + 1) + "/" + String(flashCards.length)} pageImage={firstPageImage} />
-					<CardSide side={flashCards[count].secondPage} count={String(count + 1) + "/" + String(flashCards.length)} pageImage={secondPageImage} />
+					<CardSide side={flashCards[count].firstPage} count={String(count + 1) + "/" + String(flashCards.length)} pageImage={firstPageImage} category={flashCards[count].category}/>
+					<CardSide side={flashCards[count].secondPage} count={String(count + 1) + "/" + String(flashCards.length)} pageImage={secondPageImage} category={flashCards[count].category}/>
 				</ReactCardFlip>
 			) : null}
 			<AddCard trigger={addCard} setTrigger={setAddCard}>

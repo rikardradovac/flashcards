@@ -21,9 +21,15 @@ const APIKEY = "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";
 // }));
 
 const AddCardObject = (front, back, firstPageImage, secondPageImage) => {
+
+	if (!store.has("decks")) {
+		alert("Please create a deck before you add a card!")
+		return
+	}
+	
+
 	const KEY = store.get("activeKey")
 	const flashcardsExist = store.has(KEY);
-	console.log("add key active Y", KEY)
 
 	const flashCards = flashcardsExist ? store.get(KEY) : [];
 

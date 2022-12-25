@@ -7,6 +7,7 @@ import { GiCardRandom } from "react-icons/gi"
 import { BsViewList } from "react-icons/bs"
 import { RiLayoutMasonryFill } from "react-icons/ri"
 import { IoIosOptions } from "react-icons/io"
+import { IoIosApps } from "react-icons/io"
 
 
 const Sidebar = ({children}) => {
@@ -25,7 +26,7 @@ const Sidebar = ({children}) => {
         },
         {
             path:"/flashcards-list",
-            name:"Analytics",
+            name:"List",
             icon:<BsViewList/>
         },
         {
@@ -43,7 +44,7 @@ const Sidebar = ({children}) => {
         <div className="container">
            <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
                <div className="top_section">
-                   <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>
+                   <h1 style={{display: isOpen ? "block" : "none"}} className="logo"><IoIosApps size={30}/></h1>
                    <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
                        {isOpen ? <AiIcons.AiOutlineClose onClick={toggle}/> :<FaIcons.FaBars onClick={toggle}/>}
                    </div>

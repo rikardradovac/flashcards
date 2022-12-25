@@ -5,8 +5,7 @@ store.log()
 
 
 
-const KEY = store.get("activeKey")
-const COUNTERKEY = "counter"
+
 function compareObjects(obj1, obj2) {
     // first, check that the objects have the same number of keys
     if (Object.keys(obj1).length !== Object.keys(obj2).length) {
@@ -49,6 +48,9 @@ const List = () => {
 
 		);
 	};
+
+    const KEY = store.get("activeKey")
+    const COUNTERKEY = "counter"
 
 	const flashcardsExist = store.has(KEY)
 
@@ -102,8 +104,6 @@ const List = () => {
         // deleting card logic:
         // we get an index from the TOTAL list, we need to map it to our filtered
         //we pop the filtered index and update the current rendered cards
-
-        console.log("FILTERED IN DEL", filtered.current)
         
         let tempArr = [...cardListRef.current]  // this array keeps track of the cards to render
         
@@ -170,7 +170,7 @@ const List = () => {
 					<input type="text" onChange={(event) => showFilteredCards(event.target.value)}/>
 				</label>
 			</form>
-			<h1>Total cards: {cardsCount}</h1>
+			<h1>Total cards in the current Deck: {cardsCount}</h1>
             { cardsRender ? 
             (React.isValidElement(cardsRender[0]) ? cardsRender  : cardsRender.map((flashcard, index) => <ListItem key={index} flashcard={flashcard} index={index}/>)) 
                 : null

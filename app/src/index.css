@@ -13,3 +13,7 @@ h1 {
 p {
     white-space: pre-wrap;
 }
+
+input {
+    outline: none;
+}

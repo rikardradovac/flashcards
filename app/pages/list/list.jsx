@@ -117,7 +117,7 @@ const List = () => {
             
             cardList.splice(index, 1)  // remove the selected card from the whole array
             store.set(KEY, cardList); //update array
-            
+            //new comment
             let matchingIndices = cardList.map((obj, index) => tempArr.some(obj2 => compareObjects(obj, obj2.props.flashcard)) ? index : -1).filter(index => index !== -1);
             
             // check if we have to many matches (equal objects)

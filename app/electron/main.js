@@ -42,9 +42,6 @@ function createWindow() {
 app.whenReady().then(() => {
     createWindow();
 
-    const raw = fs.readFileSync("student.json");
-    const student = JSON.parse(raw)
-    console.log(student)
 
     
     app.on("activate", () => {

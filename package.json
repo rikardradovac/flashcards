@@ -1,7 +1,7 @@
 {
-  "name": "simple-electron-template",
+  "name": "flashcards",
   "version": "0.0.1",
-  "description": "My Electron application",
+  "description": "A simple flashcards app!",
   "main": "app/electron/main.js",
   "private": true,
   "devDependencies": {
@@ -53,7 +53,7 @@
   },
   "build": {
     "productName": "Flashcards",
-    "appId": "com.mycompany|electron.myproductname",
+    "appId": "com.rikard|electron.rikard",
     "directories": {
       "buildResources": "resources"
     },
